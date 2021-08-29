@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Kanban</title>
+  </head>
+  <body>
+    <div class="board">
+      <div class="task-list todo js-list">
+        <h2 class="task-list__header">To Do</h2>
+        <div class="task-list__content">
+          <div class="task">
+            <div class="task__text">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem,
+              velit!
+            </div>
+            <div class="task__controls">
+              <button class="task__delete js-delete" title="delete">🗑</button>
+            </div>
+          </div>
+        </div>
+        <button class="task__add button js-add">Add ➕</button>
+      </div>
+      <div class="task-list in-progress js-list">
+        <h2 class="task-list__header">In Progress</h2>
+        <div class="task-list__content">
+        </div>
+      </div>
+      <div class="task-list done js-list">
+        <h2 class="task-list__header">Done</h2>
+        <div class="task-list__content">
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-header: Montserrat, sans-serif;
+  --font-text: Roboto, sans-serif;
+  --border-radius-lg: 1em;
+  --border-radius-sm: 0.75em;
+  --space: 1rem;
+}
+
+body {
+  font-family: var(--font-text);
+  background: url(./images/background.jpg);
+  margin: 0;
+}
+
+.board {
+  margin: 2em auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35ch, 1rem));
+  grid-gap: var(--space);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.task-list {
+  min-height: 10em;
+  padding: var(--space);
+  background: white;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(1rem);
+  border-radius: var(--border-radius-lg);
+}
+
+.task-list > * + * {
+  margin-top: var(--space);
+}
+
+.task-list__header {
+  font-family: var(--font-header);
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+.task-list__content > * + * {
+  margin-top: var(--space);
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: var(--space);
+  background: white;
+  border-radius: var(--border-radius-sm);
+}
+
+.task__controls {
+  opacity: 0;
+}
+
+.task:hover .task__controls {
+  opacity: 1;
+}
+
+.task__delete {
+  font-size: 1.3rem;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.25em 0.75em;
+  background: none;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+}
+
+.task__add {
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  border: 2px solid white;
+  transition: all 0.2s ease-in;
+  transition-property: color, background;
+}
+
+.task__add:hover,
+.task__add:focus {
+  color: #2a3de8;
+  background: white;
+  transition: background 0.2s ease-out;
+}
