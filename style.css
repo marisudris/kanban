@@ -112,3 +112,44 @@ body {
   background: white;
   transition: background 0.2s ease-out;
 }
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(1rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in;
+}
+
+.modal--open {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.2s ease-out;
+}
+
+.modal__content {
+  width: 40ch;
+  max-width: 95%;
+  padding: var(--space);
+  background: white;
+  border-radius: var(--border-radius-lg);
+  transform: scale(0.2);
+  transition: transform 0.2s ease-in;
+}
+
+.modal--open .modal__content {
+  transform: scale(1);
+  transition: transform 0.2s ease-out;
+}
