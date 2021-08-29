@@ -63,12 +63,13 @@ body {
 .task {
   display: flex;
   align-items: center;
-  padding: var(--space);
+  padding: 0.75em var(--space);
   background: white;
   border-radius: var(--border-radius-sm);
 }
 
 .task__controls {
+  margin-left: auto;
   opacity: 0;
 }
 

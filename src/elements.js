@@ -1,4 +1,4 @@
-const lists = document.querySelector('.js-list');
+const lists = document.querySelectorAll('.js-list');
 const addButton = document.querySelector('.js-add');
 
 export { lists, addButton };
