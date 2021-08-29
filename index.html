@@ -8,9 +8,9 @@
   </head>
   <body>
     <div class="board">
-      <div class="task-list todo js-list">
+      <section class="task-list js-list" data-type="pending">
         <h2 class="task-list__header">To Do</h2>
-        <div class="task-list__content">
+        <div class="task-list__content js-content">
           <div class="task">
             <div class="task__text">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem,
@@ -22,16 +22,16 @@
           </div>
         </div>
         <button class="task__add button js-add">Add ➕</button>
-      </div>
-      <div class="task-list in-progress js-list">
+      </section>
+      <section class="task-list js-list" data-type="in-progress">
         <h2 class="task-list__header">In Progress</h2>
-        <div class="task-list__content">
-        </div>
-      </div>
-      <div class="task-list done js-list">
+        <div class="task-list__content js-content"></div>
+      </section>
+      <section class="task-list js-list" data-type="done">
         <h2 class="task-list__header">Done</h2>
-        <div class="task-list__content">
-      </div>
+        <div class="task-list__content js-content"></div>
+      </section>
     </div>
+    <script src="./script.js" type="module"></script>
   </body>
 </html>
