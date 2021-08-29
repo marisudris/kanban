@@ -18,4 +18,8 @@ function displayItems(list, tasks) {
     list.querySelector('.js-content').innerHTML = html;
 }
 
-export { displayItems };
+function deleteItem(id, tasks) {
+    return tasks.filter((task) => task.id !== id);
+}
+
+export { displayItems, deleteItem };

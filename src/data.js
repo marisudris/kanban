@@ -5,18 +5,18 @@ const tasks = [
         status: 'pending',
     },
     {
-        id: Date.now() + 1,
+        id: Date.now() + 2,
         task: 'Another task',
         status: 'pending',
     },
 
     {
-        id: Date.now() + 1,
+        id: Date.now() + 3,
         task: 'Task in progress...',
         status: 'in-progress',
     },
     {
-        id: Date.now() + 1,
+        id: Date.now() + 4,
         task: 'Finished task',
         status: 'done',
     },
