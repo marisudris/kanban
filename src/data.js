@@ -1,24 +1,26 @@
+import { status } from './core.js';
+
 const tasks = [
     {
         id: Date.now(),
         task: 'Some task',
-        status: 'pending',
+        status: status.PENDING,
     },
     {
         id: Date.now() + 2,
         task: 'Another task',
-        status: 'pending',
+        status: status.PENDING,
     },
 
     {
         id: Date.now() + 3,
         task: 'Task in progress...',
-        status: 'in-progress',
+        status: status.IN_PROGRESS,
     },
     {
         id: Date.now() + 4,
         task: 'Finished task',
-        status: 'done',
+        status: status.DONE,
     },
 ];
 

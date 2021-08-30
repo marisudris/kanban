@@ -1,3 +1,9 @@
+const status = {
+    PENDING: 'pending',
+    IN_PROGRESS: 'in-progress',
+    DONE: 'done',
+};
+
 function displayItems(list, tasks) {
     const html = tasks
         .filter((task) => task.status === list.dataset.type)
@@ -22,4 +28,4 @@ function deleteItem(id, tasks) {
     return tasks.filter((task) => task.id !== id);
 }
 
-export { displayItems, deleteItem };
+export { status, displayItems, deleteItem };
