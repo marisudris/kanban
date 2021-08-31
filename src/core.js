@@ -40,7 +40,7 @@ function changeItemStatus(item, newStatus) {
 }
 
 function replaceItem(tasks, oldItem, newItem) {
-    const index = tasks.indexOf(oldItem);
+    const index = tasks.findIndex((task) => task.id === oldItem.id);
     if (index === -1) {
         return tasks;
     }
