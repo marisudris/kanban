@@ -32,4 +32,26 @@ function deleteItem(id, tasks) {
     return tasks.filter((task) => task.id !== id);
 }
 
-export { status, displayItems, addItem, deleteItem };
+function changeItemStatus(item, newStatus) {
+    return {
+        ...item,
+        status: newStatus,
+    };
+}
+
+function replaceItem(tasks, oldItem, newItem) {
+    const index = tasks.indexOf(oldItem);
+    if (index === -1) {
+        return tasks;
+    }
+    return [...tasks.slice(0, index), newItem, ...tasks.slice(index + 1)];
+}
+
+export {
+    status,
+    displayItems,
+    addItem,
+    deleteItem,
+    changeItemStatus,
+    replaceItem,
+};
