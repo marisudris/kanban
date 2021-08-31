@@ -12,6 +12,7 @@ for (const listing of Object.values(listings)) {
         if (evt.target.matches('.js-delete')) {
             const id = Number.parseInt(evt.target.value);
             tasks = deleteItem(id, tasks);
+            listing.dispatchEvent(new CustomEvent('update'));
         }
         listing.dispatchEvent(new CustomEvent('update'));
     });
