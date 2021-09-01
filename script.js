@@ -1,12 +1,12 @@
 import { listings, addButton, modal, modalContent } from './src/elements.js';
 import {
     status,
-    displayItems,
     addItem,
     deleteItem,
     replaceItem,
     changeItemStatus,
 } from './src/core.js';
+import { displayItems } from './src/ui.js';
 import data from './src/data.js';
 
 let tasks = [...data];
