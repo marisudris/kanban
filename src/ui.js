@@ -1,3 +1,5 @@
+import { modal, modalContent } from './elements.js';
+
 function displayItems(listing, tasks) {
     const html = tasks
         .filter((task) => task.status === listing.dataset.type)
@@ -28,4 +30,44 @@ function displayItems(listing, tasks) {
     });
 }
 
-export { displayItems };
+function addPrompt() {
+    return new Promise(async function (resolve) {
+        modalContent.innerHTML = `<form class="js-form">
+            <input class="text-input" name="input">
+            <button class="button button-submit"
+                    name="submit" type="submit">
+                    Add Item
+            </button>
+            <button class="button button-cancel" name="cancel">Cancel</button>
+         </form>
+        `;
+        modal.classList.add('modal--open');
+        const form = modalContent.querySelector('.js-form');
+        form.input.focus();
+        form.addEventListener(
+            'submit',
+            function (evt) {
+                evt.preventDefault();
+                resolve(evt.currentTarget.input.value || null);
+                closePrompt();
+            },
+            { once: true }
+        );
+        form.cancel.addEventListener(
+            'click',
+            function (evt) {
+                evt.preventDefault();
+                resolve(null);
+                closePrompt();
+            },
+            { once: true }
+        );
+    });
+}
+
+function closePrompt() {
+    modalContent.innerHTML = '';
+    modal.classList.remove('modal--open');
+}
+
+export { displayItems, addPrompt };
