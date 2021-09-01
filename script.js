@@ -32,9 +32,9 @@ Object.values(listings).forEach((listing) => {
         const id = Number(evt.target.id);
         const item = tasks.find((task) => task.id === id);
         tasks = replaceItem(
-            tasks,
             item,
-            changeItemStatus(item, listing.dataset.type)
+            changeItemStatus(item, listing.dataset.type),
+            tasks
         );
         listing.dispatchEvent(new CustomEvent('update'));
     });

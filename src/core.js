@@ -19,7 +19,7 @@ function changeItemStatus(item, newStatus) {
     };
 }
 
-function replaceItem(tasks, oldItem, newItem) {
+function replaceItem(oldItem, newItem, tasks) {
     const newTasks = deleteItem(oldItem.id, tasks);
     return addItem(newItem, newTasks);
 }
