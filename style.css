@@ -78,7 +78,8 @@ body {
   opacity: 0;
 }
 
-.task:hover .task__controls {
+.task:hover .task__controls,
+.task:focus-within .task__controls {
   opacity: 1;
 }
 
@@ -91,6 +92,7 @@ body {
 }
 
 .button {
+  font-weight: bold;
   display: inline-flex;
   align-items: center;
   justify-content: center;
