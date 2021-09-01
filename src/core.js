@@ -9,7 +9,7 @@ function displayItems(listing, tasks) {
         .filter((task) => task.status === listing.dataset.type)
         .map(
             (task) =>
-                `<div class="task">
+                `<div class="task" draggable="true" id="${task.id}">
                     <div class="task__text">${task.task}</div>
                     <div class="task__controls">
                         <button value="${task.id}"
@@ -22,6 +22,16 @@ function displayItems(listing, tasks) {
         )
         .join('');
     listing.querySelector('.js-content').innerHTML = html;
+    listing.querySelectorAll('.task').forEach((task) => {
+        task.addEventListener('dragstart', () => {
+            task.classList.add('task--moving');
+            task.classList.add('js-moving');
+        });
+        task.addEventListener('dragend', () => {
+            task.classList.remove('task--moving');
+            task.classList.remove('js-moving');
+        });
+    });
 }
 
 function addItem(item, tasks) {

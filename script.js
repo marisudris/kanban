@@ -1,5 +1,12 @@
 import { listings, addButton, modal, modalContent } from './src/elements.js';
-import { status, displayItems, addItem, deleteItem } from './src/core.js';
+import {
+    status,
+    displayItems,
+    addItem,
+    deleteItem,
+    replaceItem,
+    changeItemStatus,
+} from './src/core.js';
 import data from './src/data.js';
 
 let tasks = [...data];
@@ -14,6 +21,21 @@ for (const listing of Object.values(listings)) {
             tasks = deleteItem(id, tasks);
             listing.dispatchEvent(new CustomEvent('update'));
         }
+    });
+    const listingContent = listing.querySelector('.js-content');
+    listing.addEventListener('dragover', (evt) => {
+        evt.preventDefault();
+        const taskElem = document.querySelector('.js-moving');
+        listingContent.append(taskElem);
+    });
+    listing.addEventListener('dragend', (evt) => {
+        const id = Number(evt.target.id);
+        const item = tasks.find((task) => task.id === id);
+        tasks = replaceItem(
+            tasks,
+            item,
+            changeItemStatus(item, listing.dataset.type)
+        );
         listing.dispatchEvent(new CustomEvent('update'));
     });
 
@@ -32,7 +54,6 @@ addButton.addEventListener('click', async function () {
     };
     tasks = addItem(item, tasks);
     listings['pending'].dispatchEvent(new CustomEvent('update'));
-    // dispatchevent update
 });
 
 function addPrompt() {
