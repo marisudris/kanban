@@ -20,6 +20,11 @@ body {
   margin: 0;
 }
 
+*:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 3px rgb(173, 44, 173);
+}
+
 .board {
   margin: 2em auto;
   max-width: 1200px;
