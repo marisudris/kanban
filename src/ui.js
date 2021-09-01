@@ -84,6 +84,7 @@ function confirmPrompt() {
         `;
         modal.classList.add('modal--open');
         const form = modalContent.querySelector('.js-form');
+        form.cancel.focus();
         form.addEventListener(
             'submit',
             function (evt) {
