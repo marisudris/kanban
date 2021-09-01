@@ -11,7 +11,7 @@ import data from './src/data.js';
 
 let tasks = [...data];
 
-for (const listing of Object.values(listings)) {
+Object.values(listings).forEach((listing) => {
     listing.addEventListener('update', function (evt) {
         displayItems(listing, tasks);
     });
@@ -40,7 +40,7 @@ for (const listing of Object.values(listings)) {
     });
 
     displayItems(listing, tasks);
-}
+});
 
 addButton.addEventListener('click', async function () {
     const task = await addPrompt();
