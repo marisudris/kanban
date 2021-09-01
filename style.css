@@ -101,12 +101,41 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 10ch;
   min-height: 40px;
   padding: 0.25em 0.75em;
   background: none;
   border: none;
   border-radius: var(--border-radius-sm);
   cursor: pointer;
+  transition: all 0.2s ease-in;
+  transition-property: color, background;
+}
+
+.button:hover,
+.button:focus {
+  transition: background 0.2s ease-out;
+}
+
+.button-submit {
+  color: white;
+  background: rgb(78, 151, 235);
+}
+
+.button-submit:hover,
+.button-submit:focus {
+  background: rgb(10, 104, 211);
+}
+
+.button-cancel {
+  color: rgb(219, 104, 104);
+  border: 2px solid rgb(219, 104, 104);
+}
+
+.button-cancel:hover,
+.button-cancel:focus {
+  color: white;
+  background-color: rgb(219, 104, 104);
 }
 
 .task__add {
@@ -122,7 +151,6 @@ body {
 .task__add:focus {
   color: #2a3de8;
   background: white;
-  transition: background 0.2s ease-out;
 }
 
 .modal {
@@ -164,4 +192,18 @@ body {
 .modal--open .modal__content {
   transform: scale(1);
   transition: transform 0.2s ease-out;
+}
+
+.form {
+  display: flex;
+}
+
+.form > * + * {
+  margin-left: 5px;
+}
+.text-input {
+  flex: 1;
+  padding: 0.5em;
+  border: 2px solid black;
+  border-radius: var(--border-radius-sm);
 }

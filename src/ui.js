@@ -36,11 +36,11 @@ function constructHtml(tasks, listing) {
 
 function addPrompt() {
     return new Promise(async function (resolve) {
-        modalContent.innerHTML = `<form class="js-form">
-            <input class="text-input" name="input">
+        modalContent.innerHTML = `<form class="form js-form">
+            <input class="text-input" name="input" placeholder="Task...">
             <button class="button button-submit"
                     name="submit" type="submit">
-                    Add Item
+                    Add
             </button>
             <button class="button button-cancel" name="cancel">Cancel</button>
          </form>
