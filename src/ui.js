@@ -36,7 +36,8 @@ function constructListingHtml(tasks, listing) {
 
 function addPrompt() {
     return new Promise(async function (resolve) {
-        modalContent.innerHTML = `<form class="form js-form">
+        modalContent.innerHTML = `<h2 class="form-header">Add task</h2>
+         <form class="form js-form">
             <input class="text-input" name="input" placeholder="Task...">
             <button class="button button-submit"
                     name="submit" type="submit">
@@ -69,9 +70,43 @@ function addPrompt() {
     });
 }
 
-function closePrompt() {
-    modalContent.innerHTML = '';
-    modal.classList.remove('modal--open');
+function confirmPrompt() {
+    return new Promise(async function (resolve) {
+        modalContent.innerHTML = `<h2 class="form-header">Delete task?</h2>
+         <form class="form js-form">
+            <button class="button button-submit"
+                    name="submit" type="submit">
+                    Confirm
+            </button>
+            <button class="button button-cancel" name="cancel">Cancel</button>
+         </form>
+        `;
+        modal.classList.add('modal--open');
+        const form = modalContent.querySelector('.js-form');
+        form.addEventListener(
+            'submit',
+            function (evt) {
+                evt.preventDefault();
+                resolve(true);
+                closePrompt();
+            },
+            { once: true }
+        );
+        form.cancel.addEventListener(
+            'click',
+            function (evt) {
+                evt.preventDefault();
+                resolve(false);
+                closePrompt();
+            },
+            { once: true }
+        );
+    });
 }
 
-export { displayItems, addPrompt };
+function closePrompt() {
+    modal.classList.remove('modal--open');
+    modalContent.innerHTML = '';
+}
+
+export { displayItems, addPrompt, confirmPrompt };
