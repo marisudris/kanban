@@ -1,7 +1,22 @@
 import { modal, modalContent } from './elements.js';
 
 function displayItems(listing, tasks) {
-    const html = tasks
+    const html = constructHtml(tasks, listing);
+    listing.querySelector('.js-content').innerHTML = html;
+    listing.querySelectorAll('.task').forEach((task) => {
+        task.addEventListener('dragstart', () => {
+            task.classList.add('task--moving');
+            task.classList.add('js-moving');
+        });
+        task.addEventListener('dragend', () => {
+            task.classList.remove('task--moving');
+            task.classList.remove('js-moving');
+        });
+    });
+}
+
+function constructHtml(tasks, listing) {
+    return tasks
         .filter((task) => task.status === listing.dataset.type)
         .map(
             (task) =>
@@ -17,17 +32,6 @@ function displayItems(listing, tasks) {
                 </div>`
         )
         .join('');
-    listing.querySelector('.js-content').innerHTML = html;
-    listing.querySelectorAll('.task').forEach((task) => {
-        task.addEventListener('dragstart', () => {
-            task.classList.add('task--moving');
-            task.classList.add('js-moving');
-        });
-        task.addEventListener('dragend', () => {
-            task.classList.remove('task--moving');
-            task.classList.remove('js-moving');
-        });
-    });
 }
 
 function addPrompt() {
