@@ -5,20 +5,22 @@ import {
     deleteItem,
     replaceItem,
     changeItemStatus,
+    persistToLocalStorage,
+    restoreFromLocalStorage,
 } from './src/core.js';
 import { displayItems, addPrompt, confirmPrompt } from './src/ui.js';
-import data from './src/data.js';
 
-let tasks = [...data];
+let tasks = restoreFromLocalStorage();
 
 Object.values(listings).forEach((listing) => {
     listing.addEventListener('update', function (evt) {
         displayItems(listing, tasks);
+        persistToLocalStorage(tasks);
     });
     listing.addEventListener('click', async function (evt) {
         if (evt.target.matches('.js-delete')) {
             const id = Number.parseInt(evt.target.value);
-            const confirm = await confirmPrompt(); 
+            const confirm = await confirmPrompt();
             if (!confirm) {
                 return;
             }

@@ -24,4 +24,20 @@ function replaceItem(oldItem, newItem, tasks) {
     return addItem(newItem, newTasks);
 }
 
-export { status, addItem, deleteItem, changeItemStatus, replaceItem };
+function persistToLocalStorage(tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function restoreFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('tasks')) ?? [];
+}
+
+export {
+    status,
+    addItem,
+    deleteItem,
+    changeItemStatus,
+    replaceItem,
+    persistToLocalStorage,
+    restoreFromLocalStorage,
+};
