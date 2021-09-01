@@ -1,4 +1,5 @@
 import { modal, modalContent } from './elements.js';
+import { wait } from './utils.js';
 
 function displayItems(listing, tasks) {
     const html = constructListingHtml(tasks, listing);
@@ -104,8 +105,9 @@ function confirmPrompt() {
     });
 }
 
-function closePrompt() {
+async function closePrompt() {
     modal.classList.remove('modal--open');
+    await wait(200);
     modalContent.innerHTML = '';
 }
 
