@@ -20,17 +20,8 @@ function changeItemStatus(item, newStatus) {
 }
 
 function replaceItem(tasks, oldItem, newItem) {
-    const index = tasks.findIndex((task) => task.id === oldItem.id);
-    if (index === -1) {
-        return tasks;
-    }
-    return [...tasks.slice(0, index), newItem, ...tasks.slice(index + 1)];
+    const newTasks = deleteItem(oldItem.id, tasks);
+    return addItem(newItem, newTasks);
 }
 
-export {
-    status,
-    addItem,
-    deleteItem,
-    changeItemStatus,
-    replaceItem,
-};
+export { status, addItem, deleteItem, changeItemStatus, replaceItem };
