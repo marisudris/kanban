@@ -1,7 +1,7 @@
 import { modal, modalContent } from './elements.js';
 
 function displayItems(listing, tasks) {
-    const html = constructHtml(tasks, listing);
+    const html = constructListingHtml(tasks, listing);
     listing.querySelector('.js-content').innerHTML = html;
     listing.querySelectorAll('.task').forEach((task) => {
         task.addEventListener('dragstart', () => {
@@ -15,7 +15,7 @@ function displayItems(listing, tasks) {
     });
 }
 
-function constructHtml(tasks, listing) {
+function constructListingHtml(tasks, listing) {
     return tasks
         .filter((task) => task.status === listing.dataset.type)
         .map(
