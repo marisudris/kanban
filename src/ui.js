@@ -48,6 +48,17 @@ function addPrompt() {
          </form>
         `;
         modal.classList.add('modal--open');
+        modal.addEventListener(
+            'click',
+            function (evt) {
+                const isOutside = !evt.target.closest('.js-modal-content');
+                if (isOutside) {
+                    closePrompt();
+                }
+            },
+            { once: true }
+        );
+
         const form = modalContent.querySelector('.js-form');
         form.input.focus();
         form.addEventListener(
@@ -83,6 +94,16 @@ function confirmPrompt() {
          </form>
         `;
         modal.classList.add('modal--open');
+        modal.addEventListener(
+            'click',
+            function (evt) {
+                const isOutside = !evt.target.closest('.js-modal-content');
+                if (isOutside) {
+                    closePrompt();
+                }
+            },
+            { once: true }
+        );
         const form = modalContent.querySelector('.js-form');
         form.cancel.focus();
         form.addEventListener(
@@ -112,4 +133,4 @@ async function closePrompt() {
     modalContent.innerHTML = '';
 }
 
-export { displayItems, addPrompt, confirmPrompt };
+export { displayItems, addPrompt, confirmPrompt, closePrompt };

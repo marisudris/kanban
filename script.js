@@ -1,6 +1,6 @@
 import { listings, addButton } from './src/elements.js';
 import { restoreFromLocalStorage } from './src/core.js';
-import { displayItems } from './src/ui.js';
+import { displayItems, closePrompt } from './src/ui.js';
 import {
     updateListing,
     createItem,
@@ -29,4 +29,10 @@ Object.values(listings).forEach((listing) => {
 
 addButton.addEventListener('click', () => {
     createItem(listings['pending']);
+});
+
+window.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+        closePrompt();
+    }
 });
