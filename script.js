@@ -1,63 +1,32 @@
 import { listings, addButton } from './src/elements.js';
+import { restoreFromLocalStorage } from './src/core.js';
+import { displayItems } from './src/ui.js';
 import {
-    status,
-    addItem,
-    deleteItem,
-    replaceItem,
-    changeItemStatus,
-    persistToLocalStorage,
-    restoreFromLocalStorage,
-} from './src/core.js';
-import { displayItems, addPrompt, confirmPrompt } from './src/ui.js';
-
-let tasks = restoreFromLocalStorage();
+    updateListing,
+    createItem,
+    removeItem,
+    dragOver,
+    dragEnd,
+} from './src/handlers.js';
 
 Object.values(listings).forEach((listing) => {
-    listing.addEventListener('update', function (evt) {
-        displayItems(listing, tasks);
-        persistToLocalStorage(tasks);
-    });
-    listing.addEventListener('click', async function (evt) {
-        if (evt.target.matches('.js-delete')) {
-            const id = Number.parseInt(evt.target.value);
-            const confirm = await confirmPrompt();
-            if (!confirm) {
-                return;
-            }
-            tasks = deleteItem(id, tasks);
-            listing.dispatchEvent(new CustomEvent('update'));
-        }
-    });
-    const listingContent = listing.querySelector('.js-content');
-    listing.addEventListener('dragover', (evt) => {
-        evt.preventDefault();
-        const taskElem = document.querySelector('.js-moving');
-        listingContent.append(taskElem);
-    });
-    listing.addEventListener('dragend', (evt) => {
-        const id = Number(evt.target.id);
-        const item = tasks.find((task) => task.id === id);
-        tasks = replaceItem(
-            item,
-            changeItemStatus(item, listing.dataset.type),
-            tasks
-        );
-        listing.dispatchEvent(new CustomEvent('update'));
+    listing.addEventListener('update', (evt) => {
+        updateListing(listing, evt.detail);
     });
 
-    displayItems(listing, tasks);
+    listing.addEventListener('click', (evt) => {
+        removeItem(evt, listing);
+    });
+
+    listing.addEventListener('dragover', (evt) => dragOver(evt, listing));
+
+    listing.addEventListener('dragend', (evt) => {
+        dragEnd(evt, listing);
+    });
+
+    displayItems(listing, restoreFromLocalStorage());
 });
 
-addButton.addEventListener('click', async function () {
-    const task = await addPrompt();
-    if (!task) {
-        return;
-    }
-    const item = {
-        id: Date.now(),
-        task,
-        status: status.PENDING,
-    };
-    tasks = addItem(item, tasks);
-    listings['pending'].dispatchEvent(new CustomEvent('update'));
+addButton.addEventListener('click', () => {
+    createItem(listings['pending']);
 });
