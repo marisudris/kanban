@@ -83,8 +83,7 @@ function addPrompt() {
 }
 
 function confirmPrompt() {
-    return new Promise(async function (resolve) {
-        modalContent.innerHTML = `<h2 class="form-header">Delete task?</h2>
+    const html = `<h2 class="form-header">Delete task?</h2>
          <form class="form js-form">
             <button class="button button-submit"
                     name="submit" type="submit">
@@ -93,6 +92,12 @@ function confirmPrompt() {
             <button class="button button-cancel" name="cancel">Cancel</button>
          </form>
         `;
+    return openPrompt(html);
+}
+
+function openPrompt(html) {
+    return new Promise(async function (resolve) {
+        modalContent.innerHTML = html;
         modal.classList.add('modal--open');
         modal.addEventListener(
             'click',
@@ -110,7 +115,7 @@ function confirmPrompt() {
             'submit',
             function (evt) {
                 evt.preventDefault();
-                resolve(true);
+                resolve(evt.currentTarget.input?.value || true);
                 closePrompt();
             },
             { once: true }
