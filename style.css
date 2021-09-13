@@ -103,7 +103,7 @@ body {
   justify-content: center;
   min-width: 10ch;
   min-height: 40px;
-  padding: 0.25em 0.75em;
+  padding: 0.25em 1em;
   background: none;
   border: none;
   border-radius: var(--border-radius-sm);
@@ -119,23 +119,22 @@ body {
 
 .button-submit {
   color: white;
-  background: rgb(78, 151, 235);
+  background: rgb(10, 104, 211);
 }
 
 .button-submit:hover,
 .button-submit:focus {
-  background: rgb(10, 104, 211);
+  background: rgb(78, 151, 235);
 }
 
 .button-cancel {
-  color: rgb(219, 104, 104);
-  border: 2px solid rgb(219, 104, 104);
+  color: white;
+  background: rgb(214, 38, 38);
 }
 
 .button-cancel:hover,
 .button-cancel:focus {
-  color: white;
-  background-color: rgb(219, 104, 104);
+  background: rgb(204, 116, 116);
 }
 
 .task__add {
@@ -145,6 +144,10 @@ body {
   border: 2px solid white;
   transition: all 0.2s ease-in;
   transition-property: color, background;
+}
+
+.task__add--hidden {
+  display: none;
 }
 
 .task__add:hover,
@@ -204,15 +207,25 @@ body {
 .form {
   display: flex;
   justify-content: center;
+  gap: 0.5em;
 }
 
-.form > * + * {
-  margin-left: 5px;
+.form-listing {
+  display: none;
+  flex-wrap: wrap;
+}
+
+.form-listing--open {
+  display: flex;
+}
+
+.form-listing > * {
+  flex: 1;
 }
 
 .text-input {
-  flex: 1;
-  padding: 0.5em;
+  flex: 1 100%;
+  padding: 0.75em;
   border: 2px solid black;
   border-radius: var(--border-radius-sm);
 }

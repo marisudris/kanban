@@ -1,4 +1,4 @@
-import { modal, modalContent } from './elements.js';
+import { modal, modalContent, addButton, form } from './elements.js';
 import { wait } from './utils.js';
 
 function displayItems(listing, tasks) {
@@ -105,4 +105,35 @@ async function closePrompt() {
     modalContent.innerHTML = '';
 }
 
-export { displayItems, addPrompt, confirmPrompt, closePrompt };
+function openForm() {
+    return new Promise(async function (resolve) {
+        form.classList.add('form-listing--open');
+        addButton.classList.add('task__add--hidden');
+        form.input ? form.input.focus() : form.cancel.focus();
+        form.addEventListener(
+            'submit',
+            function (evt) {
+                evt.preventDefault();
+                resolve(evt.currentTarget.input?.value || true);
+                closeForm();
+            },
+            { once: true }
+        );
+        form.cancel.addEventListener(
+            'click',
+            function (evt) {
+                evt.preventDefault();
+                resolve(false);
+                closeForm();
+            },
+            { once: true }
+        );
+    });
+}
+
+function closeForm() {
+    form.classList.remove('form-listing--open');
+    addButton.classList.remove('task__add--hidden');
+}
+
+export { displayItems, addPrompt, confirmPrompt, closePrompt, openForm };

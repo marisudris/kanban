@@ -1,4 +1,4 @@
-import { displayItems, confirmPrompt, addPrompt } from './ui.js';
+import { displayItems, confirmPrompt, openForm } from './ui.js';
 import {
     status,
     persistToLocalStorage,
@@ -29,7 +29,7 @@ async function removeItem(evt, listing) {
 
 async function createItem(listing) {
     const tasks = restoreFromLocalStorage();
-    const task = await addPrompt();
+    const task = await openForm();
     if (!task) {
         return;
     }
