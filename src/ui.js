@@ -36,8 +36,7 @@ function constructListingHtml(tasks, listing) {
 }
 
 function addPrompt() {
-    return new Promise(async function (resolve) {
-        modalContent.innerHTML = `<h2 class="form-header">Add task</h2>
+    const html = `<h2 class="form-header">Add task</h2>
          <form class="form js-form">
             <input class="text-input" name="input" placeholder="Task...">
             <button class="button button-submit"
@@ -47,39 +46,7 @@ function addPrompt() {
             <button class="button button-cancel" name="cancel">Cancel</button>
          </form>
         `;
-        modal.classList.add('modal--open');
-        modal.addEventListener(
-            'click',
-            function (evt) {
-                const isOutside = !evt.target.closest('.js-modal-content');
-                if (isOutside) {
-                    closePrompt();
-                }
-            },
-            { once: true }
-        );
-
-        const form = modalContent.querySelector('.js-form');
-        form.input.focus();
-        form.addEventListener(
-            'submit',
-            function (evt) {
-                evt.preventDefault();
-                resolve(evt.currentTarget.input.value || null);
-                closePrompt();
-            },
-            { once: true }
-        );
-        form.cancel.addEventListener(
-            'click',
-            function (evt) {
-                evt.preventDefault();
-                resolve(null);
-                closePrompt();
-            },
-            { once: true }
-        );
-    });
+    return openPrompt(html);
 }
 
 function confirmPrompt() {
@@ -110,7 +77,7 @@ function openPrompt(html) {
             { once: true }
         );
         const form = modalContent.querySelector('.js-form');
-        form.cancel.focus();
+        form.input ? form.input.focus() : form.cancel.focus();
         form.addEventListener(
             'submit',
             function (evt) {
